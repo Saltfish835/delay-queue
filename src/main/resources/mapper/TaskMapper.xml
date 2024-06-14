@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.delayqueue.mapper.TaskMapper">
+
+    <insert id="insertTask" parameterType="com.example.delayqueue.bean.Task">
+        <selectKey order="AFTER" resultType="int" keyProperty="id">
+            select last_insert_id()
+        </selectKey>
+
+        insert into task(id, task_name, task_type, task_content, owner)
+        values (#{id}, #{taskName}, #{taskType}, #{taskContent}, #{owner})
+    </insert>
+</mapper>
