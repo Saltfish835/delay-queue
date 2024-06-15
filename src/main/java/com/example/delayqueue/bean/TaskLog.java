@@ -1,18 +1,17 @@
 package com.example.delayqueue.bean;
 
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-
+import com.baomidou.mybatisplus.annotation.Version;
 
 import java.util.Arrays;
 
 
-@TableName("task")
-public class Task {
+@TableName("task_log")
+public class TaskLog {
 
-    @TableId(type = IdType.AUTO)
+    @TableId
     private Long id;
 
     @TableField("execute_time")
@@ -32,6 +31,12 @@ public class Task {
 
     @TableField("task_owner")
     private String taskOwner;
+
+    @Version
+    private Integer version;
+
+    @TableField("status")
+    private Integer status;
 
     public Long getId() {
         return id;
@@ -81,6 +86,22 @@ public class Task {
         this.taskOwner = taskOwner;
     }
 
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
     public String getTaskName() {
         return taskName;
     }
@@ -91,7 +112,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return "Task{" +
+        return "TaskLog{" +
                 "id=" + id +
                 ", executeTime=" + executeTime +
                 ", taskName='" + taskName + '\'' +
@@ -99,6 +120,8 @@ public class Task {
                 ", priority=" + priority +
                 ", taskType=" + taskType +
                 ", taskOwner='" + taskOwner + '\'' +
+                ", version=" + version +
+                ", status=" + status +
                 '}';
     }
 }
